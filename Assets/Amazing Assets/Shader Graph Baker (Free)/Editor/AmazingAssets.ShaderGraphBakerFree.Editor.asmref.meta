@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 15e7bb33d95d6d441bcc713be974aa78
+AssemblyDefinitionReferenceImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 321612
+  packageName: Shader Graph Baker (Free)
+  packageVersion: 2025.3
+  assetPath: Assets/Amazing Assets/Shader Graph Baker (Free)/Editor/AmazingAssets.ShaderGraphBakerFree.Editor.asmref
+  uploadId: 769720

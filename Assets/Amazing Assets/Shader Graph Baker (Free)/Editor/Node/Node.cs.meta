@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 9dc8d880578d06344902bef4f998921f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 321612
+  packageName: Shader Graph Baker (Free)
+  packageVersion: 2025.3
+  assetPath: Assets/Amazing Assets/Shader Graph Baker (Free)/Editor/Node/Node.cs
+  uploadId: 769720
