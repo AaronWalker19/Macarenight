@@ -1,9 +1,9 @@
 const cacheName = "WakerIndustries-Macarenight-1.0.0";
 const contentToCache = [
     "Build/docs.loader.js",
-    "Build/docs.framework.js.br",
-    "Build/docs.data.br",
-    "Build/docs.wasm.br",
+    "Build/docs.framework.js.gz",
+    "Build/docs.data.gz",
+    "Build/docs.wasm.gz",
     "TemplateData/style.css"
 
 ];
@@ -20,52 +20,14 @@ self.addEventListener('install', function (e) {
 
 self.addEventListener('fetch', function (e) {
     e.respondWith((async function () {
-      const request = e.request;
-      
-      // Check cache first
-      let response = await caches.match(request);
-      console.log(`[Service Worker] Fetching resource: ${request.url}`);
-      
-      if (response) { 
-        // For .br files from cache, ensure correct headers
-        if (request.url.endsWith('.br')) {
-          const headers = new Headers(response.headers);
-          headers.set('Content-Encoding', 'br');
-          headers.set('Content-Type', 'application/octet-stream');
-          return new Response(response.body, {
-            status: response.status,
-            statusText: response.statusText,
-            headers: headers
-          });
-        }
-        return response; 
-      }
+      let response = await caches.match(e.request);
+      console.log(`[Service Worker] Fetching resource: ${e.request.url}`);
+      if (response) { return response; }
 
-      // Fetch from network
-      response = await fetch(request);
-      
-      // For .br files, modify headers before caching
-      if (request.url.endsWith('.br')) {
-        const headers = new Headers(response.headers);
-        headers.set('Content-Encoding', 'br');
-        headers.set('Content-Type', 'application/octet-stream');
-        
-        const modifiedResponse = new Response(response.body, {
-          status: response.status,
-          statusText: response.statusText,
-          headers: headers
-        });
-        
-        const cache = await caches.open(cacheName);
-        console.log(`[Service Worker] Caching new resource: ${request.url}`);
-        cache.put(request, modifiedResponse.clone());
-        return modifiedResponse;
-      }
-      
-      // Cache and return other files normally
+      response = await fetch(e.request);
       const cache = await caches.open(cacheName);
-      console.log(`[Service Worker] Caching new resource: ${request.url}`);
-      cache.put(request, response.clone());
+      console.log(`[Service Worker] Caching new resource: ${e.request.url}`);
+      cache.put(e.request, response.clone());
       return response;
     })());
 });
